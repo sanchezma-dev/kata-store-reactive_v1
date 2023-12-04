@@ -6,10 +6,6 @@ import reactor.core.publisher.Mono;
 
 public interface ZapatosService {
 
-     /**
-      * Obtiene un listado de zapatos
-      * @return Flux
-      */
      public Flux<Zapato> listarTodos();
 
      public Flux<Zapato> filtrarPorNumero(final int numero);

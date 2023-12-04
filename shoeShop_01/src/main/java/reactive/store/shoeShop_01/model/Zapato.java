@@ -13,7 +13,7 @@ public class Zapato {
 
     private String marca;
 
-    private int number;
+    private int numero;
 
     private double precioUnitario;
 
