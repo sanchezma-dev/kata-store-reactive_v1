@@ -8,6 +8,8 @@ public interface ZapatosService {
 
      public Flux<Zapato> listarTodos();
 
+     public Mono<Zapato> filtrarPorCodigo(final int codigo);
+
      public Flux<Zapato> filtrarPorNumero(final int numero);
 
      public Flux<Zapato> filtrarPorMarca(final String marca);

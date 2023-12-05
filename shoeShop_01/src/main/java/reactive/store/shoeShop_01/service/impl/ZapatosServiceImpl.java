@@ -12,12 +12,19 @@ import java.util.List;
 public class ZapatosServiceImpl implements ZapatosService {
 
     // Datos de la zapateria
-    private List<Zapato> zapatosBD = ZapatosUtils.generarDatosZapatos();
+    private final List<Zapato> zapatosBD = ZapatosUtils.generarDatosZapatos();
 
     @Override
     public Flux<Zapato> listarTodos() {
         return Flux.fromIterable(zapatosBD) //devuelve el flux de zapatos
                 .delayElements(Duration.ofMillis(1000)); // Retrasa la llamada a cada elemento por los milisegundos dados
+    }
+
+    @Override
+    public Mono<Zapato> filtrarPorCodigo(int codigo) {
+        return listarTodos() // (Flux) Recupera todos y filtra por código
+                .filter(e -> e.getCodigo() == codigo)
+                .next();// (Mono) Toma el primer elemento del Flux
     }
 
     @Override
@@ -65,11 +72,20 @@ public class ZapatosServiceImpl implements ZapatosService {
 
     @Override
     public Mono<Zapato> actualizarPrecio(int cod, double precio) {
-        return null;
+        return filtrarPorCodigo(cod)
+                .map (e -> {
+                    e.setPrecioUnitario(precio);
+                    return e;
+                });
     }
 
     // Metodos privados
 
+    /**
+     * Devuelve verdadero no hay ningun zapato con ese codigo, falso en caso contrario
+     * @param codigo
+     * @return true o false
+     */
     private boolean noExiste(final int codigo) {
         return zapatosBD.stream().noneMatch(e -> e.getCodigo() == codigo);
     }
