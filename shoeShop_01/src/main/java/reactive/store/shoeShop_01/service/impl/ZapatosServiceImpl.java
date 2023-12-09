@@ -1,5 +1,6 @@
 package reactive.store.shoeShop_01.service.impl;
 
+import org.springframework.stereotype.Service;
 import reactive.store.shoeShop_01.model.Zapato;
 import reactive.store.shoeShop_01.service.ZapatosService;
 import reactive.store.shoeShop_01.utils.ZapatosUtils;
@@ -9,6 +10,7 @@ import reactor.core.publisher.Mono;
 import java.time.Duration;
 import java.util.List;
 
+@Service
 public class ZapatosServiceImpl implements ZapatosService {
 
     // Datos de la zapateria
