@@ -9,11 +9,12 @@ import lombok.NoArgsConstructor;
 @Data
 public class Producto {
 
+    // TODO: Los atributos deben ser los mismos que Zapato para mantener la correspondencia
     private String marca;
 
     private int numero;
 
-    private double precio;
+    private double precioUnitario;
 
     private String tienda;
 }
