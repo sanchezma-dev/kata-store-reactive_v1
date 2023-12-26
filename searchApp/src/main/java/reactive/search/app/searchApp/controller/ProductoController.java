@@ -5,6 +5,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import reactive.search.app.searchApp.model.Producto;
 import reactive.search.app.searchApp.service.ProductoService;
@@ -20,9 +21,13 @@ public class ProductoController {
 
 
     @GetMapping("/buscarMarca")
-    public ResponseEntity<Flux<Producto>> rastrearMarca() {
-        return new ResponseEntity<>(service.findMarca("Nike"), HttpStatus.OK);
+    public ResponseEntity<Flux<Producto>> rastrearMarca(@RequestParam("marca") final String marca) {
+        return new ResponseEntity<>(service.findMarca(marca), HttpStatus.OK);
     }
 
+    @GetMapping("/buscarNumero")
+    public ResponseEntity<Flux<Producto>> rastrearNumero(@RequestParam("numero") final int numero) {
+        return new ResponseEntity<>(service.findNumero(numero), HttpStatus.OK);
+    }
 
 }
