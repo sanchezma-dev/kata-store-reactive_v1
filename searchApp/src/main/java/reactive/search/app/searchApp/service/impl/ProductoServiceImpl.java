@@ -28,6 +28,7 @@ public class ProductoServiceImpl implements ProductoService {
     @Override
     public Flux<Producto> findMarca(final String marca) {
         // Flux de shoe1 y shoe2
+
         final Flux<Producto> fluxMarca_01 = webClientService.webClientFindMarca(urlShoe_01, "tienda zapatos 01", marca);
         final Flux<Producto> fluxMarca_02 = webClientService.webClientFindMarca(urlShoe_02, "tienda zapatos 02", marca);
 
@@ -38,6 +39,7 @@ public class ProductoServiceImpl implements ProductoService {
     @Override
     public Flux<Producto> findNumero(final int numero) {
         // Flux de shoe1 y shoe2
+
         final Flux<Producto> fluxNumero_01 = webClientService.webClientFindNumero(urlShoe_01, "tienda zapatos 01", numero);
         final Flux<Producto> fluxNumero_02 = webClientService.webClientFindNumero(urlShoe_02, "tienda zapatos 02", numero);
 

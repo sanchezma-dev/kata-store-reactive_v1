@@ -34,5 +34,4 @@ public class ProductoController {
     public ResponseEntity<Flux<Producto>> rastrearPrecio(@RequestParam("precio") final double precio) {
         return new ResponseEntity<>(service.findPrecioMax(precio), HttpStatus.OK);
     }
-
 }
