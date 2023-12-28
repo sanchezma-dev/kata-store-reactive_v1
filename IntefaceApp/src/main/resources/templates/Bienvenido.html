@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Bienvenido</title>
+    <!-- CSS Bootstrap -->
+    <link href="/static/css/bootstrap.min.css" rel="stylesheet">
+    <!-- CSS Estilo -->
+    <link href="/static/css/estilo.css" rel="stylesheet">
+</head>
+<body>
+<div class="container border rounded-lg shadow-lg bg-white text-center">
+    <h1 class="mt-5">Bienvenido</h1>
+
+    <!-- Buscar por marca -->
+    <div class="row filas">
+        <div class="col-md-6">
+            <input type="text" class="form-control" placeholder="Marca">
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary">Buscar marca</button>
+        </div>
+    </div>
+
+    <!-- Buscar por número -->
+    <div class="row filas">
+        <div class="col-md-6">
+            <input type="text" class="form-control" placeholder="Número">
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary">Buscar número</button>
+        </div>
+    </div>
+
+    <!-- Buscar por precio máximo -->
+    <div class="row filas">
+        <div class="col-md-6">
+            <input type="text" class="form-control" placeholder="Precio Máximo">
+        </div>
+        <div class="col-md-2">
+            <button class="btn btn-primary">Buscar precio max</button>
+        </div>
+    </div>
+
+    <!-- Tabla -->
+    <div class="row mt-4 tabla">
+        <div class="col-md-8">
+            <table class="table table-striped table-bordered">
+                <thead>
+                <tr>
+                    <th scope="col">Marca</th>
+                    <th scope="col">Número</th>
+                    <th scope="col">Precio</th>
+                    <th scope="col">Tienda</th>
+                </tr>
+                </thead>
+                <tr th:each="producto:${listaProducto}">
+                    <td th:text="${producto.marca}"></td>
+                    <td th:text="${producto.numero}"></td>
+                    <td th:text="${producto.precioUnitario}"></td>
+                    <td th:text="${producto.tienda}"></td>
+                </tr>
+            </table>
+        </div>
+    </div>
+</div>
+</body>
+</html>
