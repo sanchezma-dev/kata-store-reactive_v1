@@ -4,9 +4,11 @@ import com.example.demo.model.Producto;
 import com.example.demo.service.ProductoService;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Service;
 import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Flux;
 
+@Service
 public class ProductoServiceImpl implements ProductoService {
 
     /** Url del servicio searchApp */
@@ -20,7 +22,7 @@ public class ProductoServiceImpl implements ProductoService {
         return webClient
                 .get()
                 .uri(uriBuilder -> uriBuilder
-                        .path(urlSearchApp)
+                        .path("/buscarMarca")
                         .queryParam("marca", marca)
                         .build())
                 .accept(MediaType.APPLICATION_JSON)
