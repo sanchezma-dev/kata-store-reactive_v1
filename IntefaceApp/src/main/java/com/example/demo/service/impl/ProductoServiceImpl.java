@@ -31,12 +31,31 @@ public class ProductoServiceImpl implements ProductoService {
     }
 
     @Override
-    public Flux<Producto> encontrarNumero(int numero) {
-        return null;
+    public Flux<Producto> encontrarNumero(final int numero) {
+        final WebClient webClient = WebClient.create(urlSearchApp);
+        return webClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path("/buscarNumero")
+                        .queryParam("numero", numero)
+                        .build())
+                .accept(MediaType.APPLICATION_JSON)
+                .retrieve()
+                .bodyToFlux(Producto.class);
+
     }
 
     @Override
-    public Flux<Producto> buscarPorPrecioMax(double precio) {
-        return null;
+    public Flux<Producto> encontrarPorPrecioMax(final double precio) {
+        final WebClient webClient = WebClient.create(urlSearchApp);
+        return webClient
+                .get()
+                .uri(uriBuilder -> uriBuilder
+                        .path("/buscarPorPrecio")
+                        .queryParam("precio", precio)
+                        .build())
+                .accept(MediaType.APPLICATION_JSON)
+                .retrieve()
+                .bodyToFlux(Producto.class);
     }
 }

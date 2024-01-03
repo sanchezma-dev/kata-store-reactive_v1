@@ -5,9 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Bienvenido</title>
     <!-- CSS Bootstrap -->
-    <link href="/bootstrap.min.css" rel="stylesheet">
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
     <!-- CSS Estilo -->
-    <link href="/estilo.css" rel="stylesheet">
+    <link href="/css/estilo.css" rel="stylesheet">
 </head>
 <body>
 <div class="container border rounded-lg shadow-lg bg-white text-center">
@@ -26,24 +26,28 @@
     </form>
 
     <!-- Buscar por número -->
-    <div class="row filas">
-        <div class="col-md-6">
-            <input type="text" class="form-control" placeholder="Número">
+    <form th:action="@{/interfaz/numero}" method="get">
+        <div class="row filas">
+            <div class="col-md-6">
+                <input type="text" class="form-control" placeholder="Número" name="numero">
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary" type="submit">Buscar número</button>
+            </div>
         </div>
-        <div class="col-md-2">
-            <button class="btn btn-primary">Buscar número</button>
-        </div>
-    </div>
+    </form>
 
     <!-- Buscar por precio máximo -->
-    <div class="row filas">
-        <div class="col-md-6">
-            <input type="text" class="form-control" placeholder="Precio Máximo">
+    <form th:action="@{/interfaz/precioMax}" method="get">
+        <div class="row filas">
+            <div class="col-md-6">
+                <input type="text" class="form-control" placeholder="Precio Máximo" name="precio">
+            </div>
+            <div class="col-md-2">
+                <button class="btn btn-primary" type="submit">Buscar precio max</button>
+            </div>
         </div>
-        <div class="col-md-2">
-            <button class="btn btn-primary">Buscar precio max</button>
-        </div>
-    </div>
+    </form>
 
     <!-- Tabla -->
     <div class="row mt-4 tabla" th:if="${mostrarTabla}">

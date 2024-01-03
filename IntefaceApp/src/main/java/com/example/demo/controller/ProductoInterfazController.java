@@ -33,17 +33,35 @@ public class ProductoInterfazController {
         model.addAttribute("mostrarTabla", false);
         return VISTA;
     }
-    @GetMapping("/marca")
+    @GetMapping(value = "/marca")
     public String buscarMarca(@RequestParam("marca") final String marca, final Model model) {
+        // Clase proporcionada por Thymeleaf
         IReactiveDataDriverContextVariable listado = new ReactiveDataDriverContextVariable(
                 service.encontrarMarca(marca), 1);
 
         model.addAttribute("mostrarTabla", true);
-/*        // Convertir Flux a Lista
-        Flux<Producto> fluxListado = service.encontrarMarca(marca);
-        List<Producto> listaProducto = fluxListado.collectList().block();
-        model.addAttribute("listaProducto", listaProducto);*/
+        model.addAttribute("listaProducto", listado);
+        return VISTA;
+    }
 
+    @GetMapping(value = "/numero")
+    public String buscarNumero(@RequestParam("numero") final int numero, final Model model) {
+        // Clase proporcionada por Thymeleaf
+        IReactiveDataDriverContextVariable listado = new ReactiveDataDriverContextVariable(
+                service.encontrarNumero(numero), 1);
+
+        model.addAttribute("mostrarTabla", true);
+        model.addAttribute("listaProducto", listado);
+        return VISTA;
+    }
+
+    @GetMapping(value = "/precioMax")
+    public String buscarPrecioMax(@RequestParam("precio") final double precio, final Model model) {
+        // Clase proporcionada por Thymeleaf
+        IReactiveDataDriverContextVariable listado = new ReactiveDataDriverContextVariable(
+                service.encontrarPorPrecioMax(precio), 1);
+
+        model.addAttribute("mostrarTabla", true);
         model.addAttribute("listaProducto", listado);
         return VISTA;
     }

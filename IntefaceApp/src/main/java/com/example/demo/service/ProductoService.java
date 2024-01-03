@@ -24,5 +24,5 @@ public interface ProductoService {
      * @param precio precio unitario del zapto
      * @return lista Flux
      */
-    public Flux<Producto> buscarPorPrecioMax(final double precio);
+    public Flux<Producto> encontrarPorPrecioMax(final double precio);
 }

@@ -1,5 +1,6 @@
 package reactive.store.shoeShop_01.service.impl;
 
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 import reactive.store.shoeShop_01.model.Zapato;
 import reactive.store.shoeShop_01.service.ZapatosService;
@@ -10,6 +11,7 @@ import reactor.core.publisher.Mono;
 import java.time.Duration;
 import java.util.List;
 
+@Slf4j
 @Service
 public class ZapatosServiceImpl implements ZapatosService {
 
@@ -18,12 +20,14 @@ public class ZapatosServiceImpl implements ZapatosService {
 
     @Override
     public Flux<Zapato> listarTodos() {
+        log.info("Entrando en el ZapatosServiceImpl.listarTodos del API shoeShop_01");
         return Flux.fromIterable(zapatosBD) //devuelve el flux de zapatos
                 .delayElements(Duration.ofMillis(1000)); // Retrasa la llamada a cada elemento por los milisegundos dados
     }
 
     @Override
     public Mono<Zapato> filtrarPorCodigo(int codigo) {
+        log.info("Entrando en el ZapatosServiceImpl.filtrarPorCodigo del API shoeShop_01");
         return listarTodos() // (Flux) Recupera todos y filtra por código
                 .filter(e -> e.getCodigo() == codigo)
                 .next();// (Mono) Toma el primer elemento del Flux
@@ -31,18 +35,21 @@ public class ZapatosServiceImpl implements ZapatosService {
 
     @Override
     public Flux<Zapato> filtrarPorNumero(int numero) {
+        log.info("Entrando en el ZapatosServiceImpl.filtrarPorNumero del API shoeShop_01");
         return listarTodos() // Llamada al método listarTodos de esta clase
                 .filter(e -> e.getNumero() == numero); //solo devuelve los que coincidan con el numero dado
     }
 
     @Override
     public Flux<Zapato> filtrarPorMarca(String marca) {
+        log.info("Entrando en el ZapatosServiceImpl.filtrarPorMarca del API shoeShop_01");
         return listarTodos() // Llamada al método listarTodos de esta clase
                 .filter(e -> marca.equals(e.getMarca())); //solo devuelve los zapatos de la marca dada
     }
 
     @Override
     public Mono<Void> altaZapato(Zapato zapato) {
+        log.info("Entrando en el ZapatosServiceImpl.altaZapato del API shoeShop_01");
         // Validacion que el codigo no exista
         if (noExiste(zapato.getCodigo())) {
             // Guardado datos
@@ -57,6 +64,7 @@ public class ZapatosServiceImpl implements ZapatosService {
 
     @Override
     public Mono<Zapato> eliminarZapato(int codigo) {
+        log.info("Entrando en el ZapatosServiceImpl.eliminarZapato del API shoeShop_01");
         return Mono.defer( () -> { //Mono.defer(() -> {...}) esto permite diferir las operaciones
             Zapato zapatoEliminado = zapatosBD.stream() //Zapato existente con ese codigo
                     .filter(e -> e.getCodigo() == codigo)
@@ -74,6 +82,7 @@ public class ZapatosServiceImpl implements ZapatosService {
 
     @Override
     public Mono<Zapato> actualizarPrecio(int cod, double precio) {
+        log.info("Entrando en el ZapatosServiceImpl.actualizarPrecio del API shoeShop_01");
         return filtrarPorCodigo(cod)
                 .map (e -> {
                     e.setPrecioUnitario(precio);
