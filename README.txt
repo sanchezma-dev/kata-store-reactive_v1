@@ -1,3 +1,2 @@
-<p>
-    <img src="https://skillicons.dev/icons?i=java,spring" />
-</p>
+### Proyecto sencillo del uso de la programación reactiva de spring
+
