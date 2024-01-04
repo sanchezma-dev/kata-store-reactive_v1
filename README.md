@@ -17,4 +17,5 @@ Lógica de negocio:
     Es una capa sencilla, con botones para realizar las búsqueda y la exposición de la tabla de resultados, en la que se va construyendo a medida que llegan los datos (con retardos).
 
 Esquema visual de la aplicativo.
+
 ![image](https://github.com/sanchezma-dev/kata-store-reactive_v1/assets/125487997/7a1662ae-1826-455a-ba6b-7267f3e3cf6a)
