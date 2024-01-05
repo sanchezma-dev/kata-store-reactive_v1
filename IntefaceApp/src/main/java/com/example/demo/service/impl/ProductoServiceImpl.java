@@ -18,7 +18,7 @@ public class ProductoServiceImpl implements ProductoService {
     @Override
     public Flux<Producto> encontrarMarca(final String marca) {
         final WebClient webClient = WebClient.create(urlSearchApp);
-        // FIXME Probar la url así (urlSearchApp +"/" +marca")
+        // TODO Podria construir la uri asi (urlSearchApp + "/buscarMarca?marca=" + marca)
         return webClient
                 .get()
                 .uri(uriBuilder -> uriBuilder

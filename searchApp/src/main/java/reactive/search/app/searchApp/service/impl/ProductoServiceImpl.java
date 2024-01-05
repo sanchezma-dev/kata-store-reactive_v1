@@ -47,7 +47,6 @@ public class ProductoServiceImpl implements ProductoService {
                 .delayElements(Duration.ofSeconds(1));
     }
 
-
     @Override
     public Flux<Producto> findPrecioMax(final double precio) {
         // Flux de shoe1 y shoe2

@@ -11,7 +11,7 @@ import reactor.core.publisher.Mono;
 import java.time.Duration;
 import java.util.List;
 
-@Slf4j
+@Slf4j //Lo proporciona la libreria de lombok
 @Service
 public class ZapatosServiceImpl implements ZapatosService {
 
